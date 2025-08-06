@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Navbar from '../components/Navbar'
 
 export default function Products() {
   const [isVisible, setIsVisible] = useState(false)
@@ -27,50 +28,22 @@ export default function Products() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-sm border-b border-gray-200 z-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
-              Food Engineer
-            </Link>
-            <div className="hidden md:flex space-x-8">
-              <Link href="/" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-                Home
-              </Link>
-              <Link href="/about" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-                About
-              </Link>
-              <Link href="/#services" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-                Services
-              </Link>
-              <span className="text-sm font-medium text-blue-600">Products</span>
-              <Link href="/#contact" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-                Contact
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-6 bg-gradient-to-br from-orange-50 to-yellow-50">
+      <section className="pt-24 pb-10 px-2 sm:px-4 bg-gradient-to-br from-orange-50 to-yellow-50">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className={`text-5xl md:text-6xl font-bold text-gray-900 mb-6 ${isVisible ? 'fade-in' : 'opacity-0'}`}>
-              Our Products
-            </h1>
-            <p className={`text-xl text-gray-600 max-w-3xl mx-auto ${isVisible ? 'fade-in' : 'opacity-0'}`} style={{animationDelay: '0.2s'}}>
-              High-quality beverages and food products manufactured with 28 years of expertise in food industry engineering
-            </p>
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className={`text-3xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 ${isVisible ? 'fade-in' : 'opacity-0'}`}>Our Products</h1>
+            <p className={`text-base sm:text-xl text-gray-600 max-w-3xl mx-auto ${isVisible ? 'fade-in' : 'opacity-0'}`} style={{animationDelay: '0.2s'}}>High-quality beverages and food products manufactured with 28 years of expertise in food industry engineering</p>
           </div>
         </div>
       </section>
 
       {/* Products Grid */}
-      <section className="py-16 px-6">
+      <section className="py-8 sm:py-16 px-2 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
             {[
               {
                 id: 'factory-juices',
@@ -103,26 +76,26 @@ export default function Products() {
             ].map((product, index) => (
               <div key={product.id} className={`bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 ${isVisible ? 'fade-in' : 'opacity-0'}`} style={{animationDelay: `${0.4 + index * 0.1}s`}}>
                 {/* Product Image */}
-                <div className="h-48 bg-gradient-to-br from-orange-100 to-yellow-100 flex items-center justify-center">
-                  <div className="text-6xl">{product.icon}</div>
+                <div className="h-36 sm:h-48 bg-gradient-to-br from-orange-100 to-yellow-100 flex items-center justify-center">
+                  <div className="text-4xl sm:text-6xl">{product.icon}</div>
                 </div>
                 
                 {/* Product Info */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm text-blue-600 font-medium">{product.category}</span>
-                    <div className="text-2xl">{product.icon}</div>
+                <div className="p-4 sm:p-6">
+                  <div className="flex items-center justify-between mb-1 sm:mb-2">
+                    <span className="text-xs sm:text-sm text-blue-600 font-medium">{product.category}</span>
+                    <div className="text-lg sm:text-2xl">{product.icon}</div>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{product.title}</h3>
-                  <p className="text-gray-600 mb-4">{product.description}</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">{product.title}</h3>
+                  <p className="text-xs sm:text-gray-600 mb-2 sm:mb-4">{product.description}</p>
                   
                   {/* Features */}
-                  <div className="space-y-2 mb-6">
+                  <div className="space-y-1 sm:space-y-2 mb-4 sm:mb-6">
                     {product.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center">
-                        <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                        <span className="text-sm text-gray-700">{feature}</span>
+                        <div className="w-2 h-2 bg-blue-600 rounded-full mr-2 sm:mr-3"></div>
+                        <span className="text-xs sm:text-sm text-gray-700">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -130,7 +103,7 @@ export default function Products() {
                   {/* View Details Button */}
                   <Link
                     href={`/products/${product.id}`}
-                    className="block w-full bg-blue-600 text-white text-center py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                    className="block w-full bg-blue-600 text-white text-center py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors text-xs sm:text-base"
                   >
                     View Details
                   </Link>
@@ -142,7 +115,7 @@ export default function Products() {
       </section>
 
       {/* Production Gallery Section */}
-      <section className="py-16 px-6 bg-gradient-to-br from-yellow-50 to-orange-50 relative overflow-hidden">
+      <section className="py-8 sm:py-16 px-2 sm:px-6 bg-gradient-to-br from-yellow-50 to-orange-50 relative overflow-hidden">
         {/* Subtle background pattern */}
         <div className="absolute inset-0 opacity-10 pointer-events-none select-none" aria-hidden="true">
           <svg width="100%" height="100%" className="w-full h-full">
@@ -160,7 +133,7 @@ export default function Products() {
             <p className="text-lg text-gray-600">Behind the scenes of our production process</p>
           </div>
           {/* Gallery grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-8">
             {images.map((src, idx) => (
               <div
                 key={idx}
@@ -168,7 +141,7 @@ export default function Products() {
                 style={{ animationDelay: `${0.1 * idx}s`, animationFillMode: 'both' }}
               >
                 <div
-                  className="w-64 h-64 rounded-3xl overflow-hidden shadow-xl border-4 border-orange-200 bg-white transition-transform duration-300 group-hover:scale-105 group-hover:shadow-2xl group-hover:border-orange-400 cursor-pointer relative"
+                  className="w-32 h-32 xs:w-40 xs:h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-4 border-orange-200 bg-white transition-transform duration-300 group-hover:scale-105 group-hover:shadow-2xl group-hover:border-orange-400 cursor-pointer relative"
                   onClick={() => setLightboxIdx(idx)}
                 >
                   <Image
@@ -176,12 +149,12 @@ export default function Products() {
                     alt={captions[idx]}
                     width={400}
                     height={400}
-                    className="w-full h-full object-cover rounded-3xl"
+                    className="w-full h-full object-cover rounded-2xl sm:rounded-3xl"
                     draggable={false}
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                 </div>
-                <div className="mt-3 text-base text-gray-700 font-medium text-center drop-shadow fade-in" style={{ animationDelay: `${0.15 + 0.1 * idx}s`, animationFillMode: 'both' }}>{captions[idx]}</div>
+                <div className="mt-2 sm:mt-3 text-xs sm:text-base text-gray-700 font-medium text-center drop-shadow fade-in" style={{ animationDelay: `${0.15 + 0.1 * idx}s`, animationFillMode: 'both' }}>{captions[idx]}</div>
               </div>
             ))}
           </div>

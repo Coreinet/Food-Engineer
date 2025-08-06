@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Navbar from '../../components/Navbar'
 
 export default function FactoryJuices() {
   const [isVisible, setIsVisible] = useState(false)
@@ -24,44 +25,18 @@ export default function FactoryJuices() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-sm border-b border-gray-200 z-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
-              Food Engineer
-            </Link>
-            <div className="hidden md:flex space-x-8">
-              <Link href="/" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-                Home
-              </Link>
-              <Link href="/about" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-                About
-              </Link>
-              <Link href="/#services" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-                Services
-              </Link>
-              <Link href="/products" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-                Products
-              </Link>
-              <Link href="/#contact" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-                Contact
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-6 bg-gradient-to-br from-orange-50 to-yellow-50">
+      <section className="pt-24 pb-8 px-2 sm:px-6 bg-gradient-to-br from-orange-50 to-yellow-50">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Product Image */}
-            <div className={`text-center ${isVisible ? 'animate-slide-in' : 'opacity-0 translate-x-full'}`}>
-              <div className="relative inline-block">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12 items-center">
+            {/* Product Image Gallery - mobile optimized */}
+            <div className={`text-center ${isVisible ? 'animate-slide-in' : 'opacity-0 translate-x-full'}`}> 
+              <div className="relative flex flex-col items-center">
                 {/* Main Image */}
-                <div className="w-96 h-96 rounded-2xl bg-gradient-to-br from-orange-100 to-yellow-100 border-8 border-white shadow-2xl overflow-hidden relative">
-                  <div className={`w-full h-full transition-all duration-500 ease-in-out ${isAnimating ? 'scale-105' : 'scale-100'}`}>
+                <div className="w-40 h-40 xs:w-56 xs:h-56 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-2xl bg-gradient-to-br from-orange-100 to-yellow-100 border-8 border-white shadow-2xl overflow-hidden relative flex items-center justify-center mx-auto">
+                  <div className={`w-full h-full transition-all duration-500 ease-in-out ${isAnimating ? 'scale-105' : 'scale-100'}`}> 
                     <Image
                       src={images[selectedImage]}
                       alt="Factory Juice Product"
@@ -70,27 +45,28 @@ export default function FactoryJuices() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  {/* Left Arrow Button */}
+                </div>
+                {/* Arrow Buttons - below image on mobile */}
+                <div className="flex justify-center items-center gap-4 mt-4 sm:mt-6">
                   <button
                     onClick={() => handleImageChange(selectedImage === 0 ? images.length - 1 : selectedImage - 1)}
-                    className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 hover:text-orange-600 w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm z-10"
+                    className="bg-white/90 hover:bg-white text-gray-800 hover:text-orange-600 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shadow hover:shadow-md transition-all duration-300 hover:scale-110 backdrop-blur-sm z-10 text-lg sm:text-xl p-0"
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                   </button>
-                  {/* Right Arrow Button */}
                   <button
                     onClick={() => handleImageChange(selectedImage === images.length - 1 ? 0 : selectedImage + 1)}
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 hover:text-orange-600 w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm z-10"
+                    className="bg-white/90 hover:bg-white text-gray-800 hover:text-orange-600 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shadow hover:shadow-md transition-all duration-300 hover:scale-110 backdrop-blur-sm z-10 text-lg sm:text-xl p-0"
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
                 </div>
                 {/* Navigation Dots */}
-                <div className="flex justify-center space-x-2 mt-4">
+                <div className="flex justify-center space-x-2 mt-3 sm:mt-4">
                   {images.map((_, index) => (
                     <button
                       key={index}
@@ -100,45 +76,39 @@ export default function FactoryJuices() {
                   ))}
                 </div>
                 {/* Quality badge */}
-                <div className="absolute -top-4 -right-4 bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-bold">
-                  Industrial Grade
-                </div>
+                <div className="absolute -top-4 -right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-bold">Industrial Grade</div>
               </div>
             </div>
-
             {/* Product Info */}
-            <div className={`space-y-6 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+            <div className={`space-y-4 sm:space-y-6 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}> 
               <div>
-                <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">Factory Juices</h1>
-                <p className="text-xl text-gray-600 mb-6">
-                  Industrial juice production with consistent quality, long shelf life, and standardized manufacturing processes.
-                </p>
-                <div className="flex items-center space-x-4">
-                  <span className="text-2xl">🏭</span>
-                  <span className="text-2xl">🍊</span>
-                  <span className="text-2xl">🍎</span>
-                  <span className="text-2xl">🍇</span>
+                <h1 className="text-2xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-2 sm:mb-4">Factory Juices</h1>
+                <p className="text-sm sm:text-xl text-gray-600 mb-3 sm:mb-6">Industrial juice production with consistent quality, long shelf life, and standardized manufacturing processes.</p>
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 justify-center sm:justify-start">
+                  <span className="text-xl sm:text-2xl">🏭</span>
+                  <span className="text-xl sm:text-2xl">🍊</span>
+                  <span className="text-xl sm:text-2xl">🍎</span>
+                  <span className="text-xl sm:text-2xl">🍇</span>
                 </div>
               </div>
-
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-gray-900">Key Features</h3>
-                <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2 sm:space-y-4">
+                <h3 className="text-lg sm:text-2xl font-bold text-gray-900">Key Features</h3>
+                <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 sm:gap-4">
                   <div className="flex items-center">
-                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-3"></div>
-                    <span className="text-gray-700">Industrial Standards</span>
+                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-2 sm:mr-3"></div>
+                    <span className="text-xs sm:text-gray-700">Industrial Standards</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-3"></div>
-                    <span className="text-gray-700">Consistent Quality</span>
+                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-2 sm:mr-3"></div>
+                    <span className="text-xs sm:text-gray-700">Consistent Quality</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-3"></div>
-                    <span className="text-gray-700">Long Shelf Life</span>
+                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-2 sm:mr-3"></div>
+                    <span className="text-xs sm:text-gray-700">Long Shelf Life</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-3"></div>
-                    <span className="text-gray-700">Cost Effective</span>
+                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-2 sm:mr-3"></div>
+                    <span className="text-xs sm:text-gray-700">Cost Effective</span>
                   </div>
                 </div>
               </div>
@@ -148,9 +118,9 @@ export default function FactoryJuices() {
       </section>
 
       {/* Product Details */}
-      <section className="py-16 px-6">
+      <section className="py-8 sm:py-16 px-2 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12">
             {/* Production Process */}
             <div className={`space-y-6 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{animationDelay: '0.4s'}}>
               <h2 className="text-3xl font-bold text-gray-900">Production Process</h2>
@@ -202,14 +172,14 @@ export default function FactoryJuices() {
       </section>
 
       {/* Industrial Benefits */}
-      <section className="py-16 px-6 bg-gray-50">
+      <section className="py-8 sm:py-16 px-2 sm:px-6 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Industrial Benefits</h2>
             <div className="w-20 h-1 bg-blue-600 mx-auto"></div>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
                 title: 'Consistency',
@@ -238,7 +208,7 @@ export default function FactoryJuices() {
       </section>
 
       {/* Back to Products */}
-      <section className="py-16 px-6 bg-white">
+      <section className="py-8 sm:py-16 px-2 sm:px-6 bg-white">
         <div className="max-w-6xl mx-auto text-center">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
